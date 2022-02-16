@@ -9,11 +9,6 @@ h1 {
   font-weight: 600;
 }
 
-span {
-  font-weight: 600;
-  font-size: xx-large;
-}
-
 h2 {
   background-color: #562b81;
   color: white;
@@ -37,7 +32,17 @@ ul {
 }
 
 .entry-image {
-  object-fit: contain;
+  object-fit: cover;
+  width: 50%;
+}
+
+.href-button {
+  background-color: #562b81;
+  color: white;
+  padding: 0.5rem, 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: none;
 }
 
 textarea {
@@ -72,13 +77,18 @@ input {
 
 .button {
   text-align: right;
-}
-
-button {
   padding: 0.5rem 1rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
+}
+
+.button-new {
+  text-align: right;
+}
+
+button {
   color: white;
   background-color: #562b81;
+  padding: 0.5rem 1rem;
   border: none;
 }
