@@ -9,6 +9,11 @@ h1 {
   font-weight: 600;
 }
 
+span {
+  font-weight: 600;
+  font-size: xx-large;
+}
+
 h2 {
   background-color: #562b81;
   color: white;
@@ -25,6 +30,14 @@ h3 {
 img {
   width: 100%;
   margin-bottom: 0.5rem;
+}
+
+ul {
+  list-style: none;
+}
+
+.entry-image {
+  object-fit: contain;
 }
 
 textarea {
