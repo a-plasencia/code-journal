@@ -7,6 +7,19 @@ var data = {
   nextEntryId: 1
 };
 
+function grabLocalStorage(event) {
+  var dataJSON = JSON.stringify(data);
+  localStorage.setItem('cj-entry', dataJSON);
+}
+
+var previousDataJSON = localStorage.getItem('cj-entry');
+if (previousDataJSON !== null) {
+  previousDataJSON = JSON.parse(previousDataJSON);
+  data.entries = previousDataJSON.entries;
+  data.nextEntryId = previousDataJSON.nextEntryId;
+}
+window.addEventListener('beforeunload', grabLocalStorage);
+
 function renderEntries(dataEntries) {
   var listedElement = document.createElement('li');
 
@@ -39,23 +52,12 @@ function renderEntries(dataEntries) {
 }
 
 var $ul = document.querySelector('ul');
-// console.log('the value of $ul is ', $ul);
-// queried $ul returns the unordered list as intended
 
-for (var i = 0; i < data.entries.length; i++) {
-  var renderEntriesAppear = renderEntries(data[i]);
-  $ul.appendChild(renderEntriesAppear);
+function renderEntreesLoading(event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    var renderEntriesAppear = renderEntries(data.entries[i]);
+    $ul.appendChild(renderEntriesAppear);
+  }
 }
 
-function grabLocalStorage(event) {
-  var dataJSON = JSON.stringify(data);
-  localStorage.setItem('cj-entry', dataJSON);
-}
-
-var previousDataJSON = localStorage.getItem('cj-entry');
-if (previousDataJSON !== null) {
-  previousDataJSON = JSON.parse(previousDataJSON);
-  data.entries = previousDataJSON.entries;
-  data.nextEntryId = previousDataJSON.nextEntryId;
-}
-window.addEventListener('beforeunload', grabLocalStorage);
+window.addEventListener('DOMContentLoaded', renderEntreesLoading);
