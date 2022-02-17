@@ -27,26 +27,6 @@ function submitEntryForm(event) {
   $createEntry.reset();
 }
 
-var $entryForm = document.querySelector('[data-entry]');
-var $entries = document.querySelector('[data-view]');
-var $hrefEntries = document.querySelector('.href-entries-list');
-var $hrefNewEntries = document.querySelector('.href-new-entries');
-
-function viewChange(event) {
-  if (event.target && event.target.matches('.href-new-entries')) {
-    $entryForm.className = '';
-    $entries.className = 'hidden';
-  }
-
-  if (event.target && event.target.matches('.href-entries-list')) {
-    $entries.className = '';
-    $entryForm.className = 'hidden';
-
-  }
-}
-
-$hrefEntries.addEventListener('click', viewChange);
-$hrefNewEntries.addEventListener('click', viewChange);
 $createEntry.addEventListener('submit', submitEntryForm);
 $photoUrl.addEventListener('input', photoChange);
 

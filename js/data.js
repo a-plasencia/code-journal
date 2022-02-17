@@ -7,19 +7,6 @@ var data = {
   nextEntryId: 1
 };
 
-function grabLocalStorage(event) {
-  var dataJSON = JSON.stringify(data);
-  localStorage.setItem('cj-entry', dataJSON);
-}
-
-var previousDataJSON = localStorage.getItem('cj-entry');
-if (previousDataJSON !== null) {
-  previousDataJSON = JSON.parse(previousDataJSON);
-  data.entries = previousDataJSON.entries;
-  data.nextEntryId = previousDataJSON.nextEntryId;
-}
-window.addEventListener('beforeunload', grabLocalStorage);
-
 function renderEntries(dataEntries) {
   var listedElement = document.createElement('li');
 
@@ -53,6 +40,36 @@ function renderEntries(dataEntries) {
 
 var $ul = document.querySelector('ul');
 
+var $entryForm = document.querySelector('[data-entry]');
+var $entries = document.querySelector('[data-view]');
+var $hrefEntries = document.querySelector('.href-entries-list');
+var $hrefNewEntries = document.querySelector('.href-new-entries');
+var $button = document.querySelector('button');
+
+function viewChange(event) {
+  if (event.target && event.target.matches('.href-new-entries')) {
+    $entryForm.className = '';
+    $entries.className = 'hidden';
+  }
+
+  if (event.target && event.target.matches('.href-entries-list')) {
+    $entries.className = '';
+    $entryForm.className = 'hidden';
+
+  }
+
+  if (event.target && event.target.matches('button')) {
+    $entries.className = '';
+    $entryForm.className = 'hidden';
+    renderEntries(data);
+    window.addEventListener('submit', renderEntreesLoading);
+  }
+}
+
+$button.addEventListener('click', viewChange);
+$hrefEntries.addEventListener('click', viewChange);
+$hrefNewEntries.addEventListener('click', viewChange);
+
 function renderEntreesLoading(event) {
   for (var i = 0; i < data.entries.length; i++) {
     var renderEntriesAppear = renderEntries(data.entries[i]);
@@ -61,3 +78,16 @@ function renderEntreesLoading(event) {
 }
 
 window.addEventListener('DOMContentLoaded', renderEntreesLoading);
+
+function grabLocalStorage(event) {
+  var dataJSON = JSON.stringify(data);
+  localStorage.setItem('cj-entry', dataJSON);
+}
+
+var previousDataJSON = localStorage.getItem('cj-entry');
+if (previousDataJSON !== null) {
+  previousDataJSON = JSON.parse(previousDataJSON);
+  data.entries = previousDataJSON.entries;
+  data.nextEntryId = previousDataJSON.nextEntryId;
+}
+window.addEventListener('beforeunload', grabLocalStorage);

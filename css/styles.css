@@ -109,6 +109,7 @@ button {
   background-color: #562b81;
   padding: 0.5rem 1rem;
   border: none;
+  cursor: pointer;
 }
 
 .display-inline {
