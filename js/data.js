@@ -50,17 +50,19 @@ function viewChange(event) {
   if (event.target && event.target.matches('.href-new-entries')) {
     $entryForm.className = '';
     $entries.className = 'hidden';
+    data.view = 'entry-form';
   }
 
   if (event.target && event.target.matches('.href-entries-list')) {
     $entries.className = '';
     $entryForm.className = 'hidden';
-
+    data.view = 'entries';
   }
 
   if (event.target && event.target.matches('button')) {
     $entries.className = '';
     $entryForm.className = 'hidden';
+    data.view = 'entries';
     renderEntries(data);
     window.addEventListener('submit', renderEntreesLoading);
   }
@@ -89,5 +91,15 @@ if (previousDataJSON !== null) {
   previousDataJSON = JSON.parse(previousDataJSON);
   data.entries = previousDataJSON.entries;
   data.nextEntryId = previousDataJSON.nextEntryId;
+  data.view = previousDataJSON.view;
 }
+
+if (previousDataJSON.view === 'entry-form') {
+  $entryForm.className = '';
+  $entries.className = 'hidden';
+} else {
+  $entries.className = '';
+  $entryForm.className = 'hidden';
+}
+
 window.addEventListener('beforeunload', grabLocalStorage);
