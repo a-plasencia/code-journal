@@ -36,7 +36,7 @@ ul {
   width: 50%;
 }
 
-.href-button {
+.href-entries-list {
   background-color: #562b81;
   color: white;
   padding: 0.5rem, 1rem;
@@ -46,7 +46,7 @@ ul {
   border: none;
 }
 
-.href-new {
+.href-new-entries {
   background-color: #562b81;
   color: white;
   padding-top: 0.8rem;
