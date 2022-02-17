@@ -46,6 +46,27 @@ ul {
   border: none;
 }
 
+.href-new {
+  background-color: #562b81;
+  color: white;
+  padding-top: 0.8rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: default;
+}
+
 textarea {
   resize: none;
 }
@@ -83,10 +104,6 @@ input {
   margin-bottom: 2rem;
 }
 
-.button-new {
-  text-align: right;
-}
-
 button {
   color: white;
   background-color: #562b81;
@@ -100,4 +117,9 @@ button {
 
 .row-background {
   background-color: #562b81;
+}
+
+.justify-between {
+  display: flex;
+  justify-content: space-between;
 }
