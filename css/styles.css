@@ -12,7 +12,7 @@ h1 {
 h2 {
   background-color: #562b81;
   color: white;
-  padding-top: 1rem;
+  padding-top: 0.5rem;
   padding-bottom: 1rem;
   margin-bottom: 0.2rem;
 }
@@ -25,6 +25,51 @@ h3 {
 img {
   width: 100%;
   margin-bottom: 0.5rem;
+}
+
+ul {
+  list-style: none;
+}
+
+.p-entries {
+  text-align: center;
+  font-size: large;
+}
+
+.entry-image {
+  object-fit: cover;
+  width: 50%;
+}
+
+.href-entries-list {
+  background-color: #562b81;
+  color: white;
+  padding: 0.5rem, 1rem;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+}
+
+.href-new-entries {
+  background-color: #562b81;
+  color: white;
+  padding-top: 0.8rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: default;
 }
 
 textarea {
@@ -59,13 +104,28 @@ input {
 
 .button {
   text-align: right;
-}
-
-button {
   padding: 0.5rem 1rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
+}
+
+button {
   color: white;
   background-color: #562b81;
+  padding: 0.5rem 1rem;
   border: none;
+  cursor: pointer;
+}
+
+.display-inline {
+  display: inline-block;
+}
+
+.row-background {
+  background-color: #562b81;
+}
+
+.justify-between {
+  display: flex;
+  justify-content: space-between;
 }

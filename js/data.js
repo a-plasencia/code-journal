@@ -17,5 +17,7 @@ if (previousDataJSON !== null) {
   previousDataJSON = JSON.parse(previousDataJSON);
   data.entries = previousDataJSON.entries;
   data.nextEntryId = previousDataJSON.nextEntryId;
+  data.view = previousDataJSON.view;
 }
+
 window.addEventListener('beforeunload', grabLocalStorage);
