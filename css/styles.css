@@ -31,6 +31,11 @@ ul {
   list-style: none;
 }
 
+.p-entries {
+  text-align: center;
+  font-size: large;
+}
+
 .entry-image {
   object-fit: cover;
   width: 50%;
