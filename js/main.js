@@ -56,16 +56,24 @@ function renderEntries(dataEntries) {
   divColumn1.appendChild(entryImg);
 
   var divColumn2 = document.createElement('div');
-  divColumn2.setAttribute('class', 'column-half');
+  divColumn2.setAttribute('class', 'column-half justify-between');
   divRow.appendChild(divColumn2);
 
   var h1Title = document.createElement('h1');
   h1Title.textContent = dataEntries.title;
   divColumn2.appendChild(h1Title);
 
+  var icon = document.createElement('i');
+  icon.setAttribute('class', 'fa fa-solid fa-pen');
+  divColumn2.appendChild(icon);
+
+  var divColumn3 = document.createElement('div');
+  divColumn3.setAttribute('class', 'column-half');
+  divRow.appendChild(divColumn3);
+
   var pNotes = document.createElement('p');
   pNotes.textContent = dataEntries.notes;
-  divColumn2.appendChild(pNotes);
+  divColumn3.appendChild(pNotes);
 
   return listedElement;
 }
