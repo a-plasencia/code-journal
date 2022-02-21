@@ -36,11 +36,13 @@ function submitEntryForm(event) {
 
 var $entryForm = document.querySelector('[data-entry]');
 var $entries = document.querySelector('[data-view]');
+var $edit = document.querySelector('[data-edit]');
 var $hrefEntries = document.querySelector('.href-entries-list');
 var $hrefNewEntries = document.querySelector('.href-new-entries');
 
 function renderEntries(dataEntries) {
   var listedElement = document.createElement('li');
+  listedElement.setAttribute('data-entry-id', 'entry-id');
 
   var divRow = document.createElement('div');
   divRow.setAttribute('class', 'row');
@@ -56,24 +58,27 @@ function renderEntries(dataEntries) {
   divColumn1.appendChild(entryImg);
 
   var divColumn2 = document.createElement('div');
-  divColumn2.setAttribute('class', 'column-half justify-between');
+  divColumn2.setAttribute('class', 'column-half');
   divRow.appendChild(divColumn2);
+
+  var divJustify = document.createElement('div');
+  divJustify.setAttribute('class', 'justify-between');
+  divColumn2.appendChild(divJustify);
 
   var h1Title = document.createElement('h1');
   h1Title.textContent = dataEntries.title;
-  divColumn2.appendChild(h1Title);
+  divJustify.appendChild(h1Title);
 
   var icon = document.createElement('i');
   icon.setAttribute('class', 'fa fa-solid fa-pen');
-  divColumn2.appendChild(icon);
+  divJustify.appendChild(icon);
 
-  var divColumn3 = document.createElement('div');
-  divColumn3.setAttribute('class', 'column-half');
-  divRow.appendChild(divColumn3);
+  var divNoJustify = document.createElement('div');
+  divColumn2.appendChild(divNoJustify);
 
   var pNotes = document.createElement('p');
   pNotes.textContent = dataEntries.notes;
-  divColumn3.appendChild(pNotes);
+  divNoJustify.appendChild(pNotes);
 
   return listedElement;
 }
@@ -89,21 +94,38 @@ function renderEntriesLoading(event) {
 
 window.addEventListener('DOMContentLoaded', renderEntriesLoading);
 
+function chooseToEdit(event) {
+  if (event.target && event.target.matches('i')) {
+  // console.log('this value is matching the pen', event.target);
+  }
+}
+
+$ul.addEventListener('click', chooseToEdit);
+
 function viewChange(event) {
   if (event.target && event.target.matches('.href-new-entries')) {
     $entryForm.className = '';
     $entries.className = 'hidden';
+    $edit.className = 'row hidden';
     data.view = 'entry-form';
   }
 
   if (event.target && event.target.matches('.href-entries-list')) {
     $entries.className = '';
     $entryForm.className = 'hidden';
+    $edit.className = 'row hidden';
     data.view = 'entries';
   }
 
+  if (event.target && event.target.matches('i')) {
+    $entries.className = 'hidden';
+    $entryForm.className = 'hidden';
+    $edit.className = 'row';
+    data.view = 'edit';
+  }
 }
 
+$ul.addEventListener('click', viewChange);
 $hrefEntries.addEventListener('click', viewChange);
 $hrefNewEntries.addEventListener('click', viewChange);
 

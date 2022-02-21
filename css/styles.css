@@ -133,4 +133,9 @@ button {
 .fa {
   font-size: 1.5rem;
   padding-top: 1rem;
+  color: #562b81;
+}
+
+i:hover {
+  cursor: pointer;
 }
