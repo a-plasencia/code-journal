@@ -39,7 +39,8 @@ var $entries = document.querySelector('[data-view]');
 var $edit = document.querySelector('[data-edit]');
 var $hrefEntries = document.querySelector('.href-entries-list');
 var $hrefNewEntries = document.querySelector('.href-new-entries');
-
+// var $edits = document.querySelectorAll('entries');
+// console.log('the value of $edits is: ', $edits);
 function renderEntries(dataEntries) {
   var listedElement = document.createElement('li');
   listedElement.setAttribute('data-entry-id', 'entry-id');
@@ -96,10 +97,11 @@ window.addEventListener('DOMContentLoaded', renderEntriesLoading);
 
 function chooseToEdit(event) {
   if (event.target && event.target.matches('i')) {
-  // console.log('this value is matching the pen', event.target);
+    // var getData = event.target.getAttribute('data-entry-id');
+    // console.log('the value of getData is: ', getData);
+    // console.log('this value is matching the pen', event.target);
   }
 }
-
 $ul.addEventListener('click', chooseToEdit);
 
 function viewChange(event) {
