@@ -5,6 +5,11 @@ var $createEntry = document.querySelector('#create-entry');
 var $photoUrl = document.querySelector('#photo-entry');
 var $img = document.querySelector('img');
 var $p = document.querySelector('.p-entries');
+
+// var titleInput = $createEntry.elements.title;
+// titleInput.value = 'whassuuuuup';
+// console.log('the value of textInTitle is: ', titleInput);
+
 function photoChange(event) {
   $img.src = event.target.value;
 }
@@ -39,8 +44,7 @@ var $entries = document.querySelector('[data-view]');
 var $edit = document.querySelector('[data-edit]');
 var $hrefEntries = document.querySelector('.href-entries-list');
 var $hrefNewEntries = document.querySelector('.href-new-entries');
-// var $edits = document.querySelectorAll('entries');
-// console.log('the value of $edits is: ', $edits);
+
 function renderEntries(dataEntries) {
   var listedElement = document.createElement('li');
   listedElement.setAttribute('data-entry-id', 'entry-id');
@@ -97,9 +101,10 @@ window.addEventListener('DOMContentLoaded', renderEntriesLoading);
 
 function chooseToEdit(event) {
   if (event.target && event.target.matches('i')) {
-    // var getData = event.target.getAttribute('data-entry-id');
-    // console.log('the value of getData is: ', getData);
-    // console.log('this value is matching the pen', event.target);
+    // var getEntry = event.target.closest('[data-entry-id]');
+    // console.log('the value of getEntry is: ', getEntry);
+    // var $liList = document.querySelectorAll('[data-entry-id]');
+    // console.log('the value of $liList is: ', $liList);
   }
 }
 $ul.addEventListener('click', chooseToEdit);
@@ -108,21 +113,21 @@ function viewChange(event) {
   if (event.target && event.target.matches('.href-new-entries')) {
     $entryForm.className = '';
     $entries.className = 'hidden';
-    $edit.className = 'row hidden';
+    $edit.className = 'hidden';
     data.view = 'entry-form';
   }
 
   if (event.target && event.target.matches('.href-entries-list')) {
     $entries.className = '';
     $entryForm.className = 'hidden';
-    $edit.className = 'row hidden';
+    $edit.className = 'hidden';
     data.view = 'entries';
   }
 
   if (event.target && event.target.matches('i')) {
     $entries.className = 'hidden';
     $entryForm.className = 'hidden';
-    $edit.className = 'row';
+    $edit.className = '';
     data.view = 'edit';
   }
 }
