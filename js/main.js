@@ -5,10 +5,7 @@ var $createEntry = document.querySelector('#create-entry');
 var $photoUrl = document.querySelector('#photo-entry');
 var $img = document.querySelector('img');
 var $p = document.querySelector('.p-entries');
-
-// var titleInput = $createEntry.elements.title;
-// titleInput.value = 'whassuuuuup';
-// console.log('the value of textInTitle is: ', titleInput);
+var $editEntry = document.querySelector('#edit-entry');
 
 function photoChange(event) {
   $img.src = event.target.value;
@@ -100,14 +97,31 @@ function renderEntriesLoading(event) {
 window.addEventListener('DOMContentLoaded', renderEntriesLoading);
 
 function chooseToEdit(event) {
-  if (event.target && event.target.matches('i')) {
-    // var getEntry = event.target.closest('[data-entry-id]');
-    // console.log('the value of getEntry is: ', getEntry);
-    // var $liList = document.querySelectorAll('[data-entry-id]');
-    // console.log('the value of $liList is: ', $liList);
-  }
+  // if (event.target && event.target.matches('i')) {
+  //   var getEntry = event.target.closest('[data-entry-id]');
+  //   console.log('the value of getEntry is: ', getEntry);
+
+  //   var getEntryh1 = getEntry.elements.h1.textContent;
+  //   console.log('the value of getEntryh1: ', getEntryh1);
+
+  //   var editValue = $editEntry.elements.title.value;
+  //   console.log('editValues value is: ', editValue);
+
+  //   var $liList = document.querySelectorAll('[data-entry-id]');
+  //   console.log('the value of $liList is: ', $liList);
+
+  //   for (var i = 0; i < $liList.length; i++) {
+  //     if ($liList[i] === getEntry) {
+  //       console.log('this value is printing because $liList[i] and getEntry are the same');
+  //     }
+  //   }
+  // }
 }
 $ul.addEventListener('click', chooseToEdit);
+$editEntry.addEventListener('submit', chooseToEdit);
+// var titleInput = $createEntry.elements.title;
+// titleInput.value = 'whassuuuuup';
+// console.log('the value of textInTitle is: ', titleInput);
 
 function viewChange(event) {
   if (event.target && event.target.matches('.href-new-entries')) {
