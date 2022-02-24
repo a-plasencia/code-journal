@@ -3,24 +3,13 @@
 
 var $createEntry = document.querySelector('#create-entry');
 var $photoUrl = document.querySelector('#photo-entry');
-var $photoUrlEdit = document.querySelector('#photo-edit');
-var $imgEdit = document.querySelector('.edit-image');
 var $img = document.querySelector('img');
+var $editH1 = document.querySelector('.edit-entry');
+var $newH1 = document.querySelector('.new-entry');
 var $p = document.querySelector('.p-entries');
-var $editEntry = document.querySelector('#edit-entry');
-var placeholderImage = $img.src;
-function photoChange(event) {
-  if ($img.src === '') {
-    $img.src = placeholderImage;
-  }
-  $img.src = event.target.value;
-}
 
-function photoChangeEdit(event) {
-  if ($imgEdit.src === '') {
-    $imgEdit.src = placeholderImage;
-  }
-  $imgEdit.src = event.target.value;
+function photoChange(event) {
+  $img.src = event.target.value;
 }
 
 function submitEntryForm(event) {
@@ -50,7 +39,6 @@ function submitEntryForm(event) {
 
 var $entryForm = document.querySelector('[data-entry]');
 var $entries = document.querySelector('[data-view]');
-var $edit = document.querySelector('[data-edit]');
 var $hrefEntries = document.querySelector('.href-entries-list');
 var $hrefNewEntries = document.querySelector('.href-new-entries');
 
@@ -120,36 +108,39 @@ function chooseToEdit(event) {
         var photoUrlEdit = data.entries[i].photoUrl;
         var notesEdit = data.entries[i].notes;
         data.editing = data.entries[i].EntryId;
-        $editEntry.elements.title.value = titleEdit;
-        $editEntry.elements.photoUrl.value = photoUrlEdit;
-        $editEntry.elements.notes.value = notesEdit;
-        $imgEdit.src = photoUrlEdit;
+        $createEntry.elements.title.value = titleEdit;
+        $createEntry.elements.photoUrl.value = photoUrlEdit;
+        $createEntry.elements.notes.value = notesEdit;
+        $img.src = photoUrlEdit;
       }
     }
   }
 }
 $ul.addEventListener('click', chooseToEdit);
-$editEntry.addEventListener('submit', chooseToEdit);
+$createEntry.addEventListener('click', chooseToEdit);
 
 function viewChange(event) {
   if (event.target && event.target.matches('.href-new-entries')) {
     $entryForm.className = '';
     $entries.className = 'hidden';
-    $edit.className = 'hidden';
     data.view = 'entry-form';
   }
 
   if (event.target && event.target.matches('.href-entries-list')) {
     $entries.className = '';
     $entryForm.className = 'hidden';
-    $edit.className = 'hidden';
+    $editH1.className = 'edit-entry hidden';
+    $newH1.className = 'new-entry ';
+    $createEntry.reset();
+    $img.src = 'images/placeholder-image-square.jpg';
     data.view = 'entries';
   }
 
   if (event.target && event.target.matches('i')) {
     $entries.className = 'hidden';
-    $entryForm.className = 'hidden';
-    $edit.className = '';
+    $entryForm.className = '';
+    $editH1.className = 'edit-entry ';
+    $newH1.className = 'new-entry hidden';
     data.view = 'edit';
   }
 }
@@ -172,4 +163,3 @@ if (data.entries.length !== 0) {
 
 $createEntry.addEventListener('submit', submitEntryForm);
 $photoUrl.addEventListener('input', photoChange);
-$photoUrlEdit.addEventListener('input', photoChangeEdit);

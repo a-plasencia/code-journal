@@ -30,7 +30,8 @@
       <div data-entry="entry-form" class="">
         <div class="row">
           <div class="column-full">
-            <h1>New Entry</h1>
+            <h1 class="new-entry ">New Entry</h1>
+            <h1 class="edit-entry hidden">Edit Entry</h1>
           </div>
         </div>
         <form id="create-entry">
@@ -85,36 +86,6 @@
         </div>
         <ul>
         </ul>
-      </div>
-      <div data-edit="edit" class="hidden">
-        <div class="row">
-          <div class="column-full">
-            <h1>Edit Entry</h1>
-          </div>
-        </div>
-        <form id="edit-entry">
-          <div class="row">
-            <div class="column-full column-half">
-              <img class="edit-image" src="images/placeholder-image-square.jpg" alt="placeholder image">
-            </div>
-            <div class="column-full column-half">
-              <h3>Title</h3>
-              <label for="title-entry"></label>
-              <input required name="title" type="text" id="title-edit">
-              <h3>Photo URL</h3>
-              <label for="photo-entry"></label>
-              <input required name="photoUrl" type="text" id="photo-edit">
-            </div>
-            <div class="column-full">
-              <h3>Notes</h3>
-              <label for="notes-entry"></label>
-              <textarea required rows="8" name="notes" id="notes-edit"></textarea>
-            </div>
-            <div class="column-full button">
-              <button>SAVE</button>
-            </div>
-          </div>
-        </form>
       </div>
     </div>
   </main>
