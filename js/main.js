@@ -101,21 +101,22 @@ function chooseToEdit(event) {
   //   var getEntry = event.target.closest('[data-entry-id]');
   //   console.log('the value of getEntry is: ', getEntry);
 
-  //   var getEntryh1 = getEntry.elements.h1.textContent;
-  //   console.log('the value of getEntryh1: ', getEntryh1);
+  // var getEntryh1 = getEntry.elements.h1.value;
+  // console.log('the value of getEntryh1: ', getEntryh1);
 
-  //   var editValue = $editEntry.elements.title.value;
-  //   console.log('editValues value is: ', editValue);
+  // var editValue = $editEntry.elements.title.value;
+  // console.log('editValues value is: ', editValue);
 
-  //   var $liList = document.querySelectorAll('[data-entry-id]');
-  //   console.log('the value of $liList is: ', $liList);
+  // var $liList = document.querySelectorAll('[data-entry-id]');
+  // console.log('the value of $liList is: ', $liList);
 
-  //   for (var i = 0; i < $liList.length; i++) {
-  //     if ($liList[i] === getEntry) {
-  //       console.log('this value is printing because $liList[i] and getEntry are the same');
-  //     }
-  //   }
-  // }
+//     for (var i = 0; i < $liList.length; i++) {
+//       if ($liList[i] === getEntry) {
+//         console.log('this value is printing because $liList[i] and getEntry are the same');
+//         console.log('the value of data.entries[i] should be the same: ', data.entries[i]);
+//       }
+//     }
+//   }
 }
 $ul.addEventListener('click', chooseToEdit);
 $editEntry.addEventListener('submit', chooseToEdit);
