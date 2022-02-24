@@ -3,6 +3,7 @@
 
 var $createEntry = document.querySelector('#create-entry');
 var $photoUrl = document.querySelector('#photo-entry');
+var $imgEdit = document.querySelector('.edit-image');
 var $img = document.querySelector('img');
 var $p = document.querySelector('.p-entries');
 var $editEntry = document.querySelector('#edit-entry');
@@ -97,32 +98,27 @@ function renderEntriesLoading(event) {
 window.addEventListener('DOMContentLoaded', renderEntriesLoading);
 
 function chooseToEdit(event) {
-  // if (event.target && event.target.matches('i')) {
-  //   var getEntry = event.target.closest('[data-entry-id]');
-  //   console.log('the value of getEntry is: ', getEntry);
+  if (event.target && event.target.matches('i')) {
+    var getEntry = event.target.closest('[data-entry-id]');
 
-  // var getEntryh1 = getEntry.elements.h1.value;
-  // console.log('the value of getEntryh1: ', getEntryh1);
+    var $liList = document.querySelectorAll('[data-entry-id]');
 
-  // var editValue = $editEntry.elements.title.value;
-  // console.log('editValues value is: ', editValue);
+    for (var i = 0; i < $liList.length; i++) {
+      if ($liList[i] === getEntry) {
+        var titleEdit = data.entries[i].title;
+        var photoUrlEdit = data.entries[i].photoUrl;
+        var notesEdit = data.entries[i].notes;
+        $editEntry.elements.title.value = titleEdit;
+        $editEntry.elements.photoUrl.value = photoUrlEdit;
+        $editEntry.elements.notes.value = notesEdit;
+        $imgEdit.src = photoUrlEdit;
 
-  // var $liList = document.querySelectorAll('[data-entry-id]');
-  // console.log('the value of $liList is: ', $liList);
-
-//     for (var i = 0; i < $liList.length; i++) {
-//       if ($liList[i] === getEntry) {
-//         console.log('this value is printing because $liList[i] and getEntry are the same');
-//         console.log('the value of data.entries[i] should be the same: ', data.entries[i]);
-//       }
-//     }
-//   }
+      }
+    }
+  }
 }
 $ul.addEventListener('click', chooseToEdit);
 $editEntry.addEventListener('submit', chooseToEdit);
-// var titleInput = $createEntry.elements.title;
-// titleInput.value = 'whassuuuuup';
-// console.log('the value of textInTitle is: ', titleInput);
 
 function viewChange(event) {
   if (event.target && event.target.matches('.href-new-entries')) {
