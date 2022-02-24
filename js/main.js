@@ -3,13 +3,24 @@
 
 var $createEntry = document.querySelector('#create-entry');
 var $photoUrl = document.querySelector('#photo-entry');
+var $photoUrlEdit = document.querySelector('#photo-edit');
 var $imgEdit = document.querySelector('.edit-image');
 var $img = document.querySelector('img');
 var $p = document.querySelector('.p-entries');
 var $editEntry = document.querySelector('#edit-entry');
-
+var placeholderImage = $img.src;
 function photoChange(event) {
+  if ($img.src === '') {
+    $img.src = placeholderImage;
+  }
   $img.src = event.target.value;
+}
+
+function photoChangeEdit(event) {
+  if ($imgEdit.src === '') {
+    $imgEdit.src = placeholderImage;
+  }
+  $imgEdit.src = event.target.value;
 }
 
 function submitEntryForm(event) {
@@ -108,11 +119,11 @@ function chooseToEdit(event) {
         var titleEdit = data.entries[i].title;
         var photoUrlEdit = data.entries[i].photoUrl;
         var notesEdit = data.entries[i].notes;
+        data.editing = data.entries[i].EntryId;
         $editEntry.elements.title.value = titleEdit;
         $editEntry.elements.photoUrl.value = photoUrlEdit;
         $editEntry.elements.notes.value = notesEdit;
         $imgEdit.src = photoUrlEdit;
-
       }
     }
   }
@@ -161,3 +172,4 @@ if (data.entries.length !== 0) {
 
 $createEntry.addEventListener('submit', submitEntryForm);
 $photoUrl.addEventListener('input', photoChange);
+$photoUrlEdit.addEventListener('input', photoChangeEdit);
