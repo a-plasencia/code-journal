@@ -25,10 +25,23 @@ function submitEntryForm(event) {
   };
 
   newEntryObject.EntryId = data.nextEntryId;
-  data.entries.unshift(newEntryObject);
-  var renderNewObject = renderEntries(data.entries[0]);
-  $ul.prepend(renderNewObject);
-  data.nextEntryId++;
+  if (data.editing !== null) {
+    // console.log('hi editing is not null right now');
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.editing === data.entries[i].EntryId) {
+        // console.log('hi we found the matching form', data.entries[i]);
+        data.entries[i].title = titleValue;
+        data.entries[i].photoUrl = photoUrlValue;
+        data.entries[i].notes = notesValue;
+        // console.log('what HAVE YOU DONE OH NO', data.entries[i]);
+      }
+    }
+  } else {
+    data.entries.unshift(newEntryObject);
+    var renderNewObject = renderEntries(data.entries[0]);
+    $ul.prepend(renderNewObject);
+    data.nextEntryId++;
+  }
   $img.src = 'images/placeholder-image-square.jpg';
   $entries.className = '';
   $entryForm.className = 'hidden';
@@ -99,9 +112,9 @@ window.addEventListener('DOMContentLoaded', renderEntriesLoading);
 function chooseToEdit(event) {
   if (event.target && event.target.matches('i')) {
     var getEntry = event.target.closest('[data-entry-id]');
-
     var $liList = document.querySelectorAll('[data-entry-id]');
-
+    // console.log('value of getEntry is: ', getEntry);
+    // console.log('value of $liList is: ', $liList);
     for (var i = 0; i < $liList.length; i++) {
       if ($liList[i] === getEntry) {
         var titleEdit = data.entries[i].title;
@@ -123,6 +136,8 @@ function viewChange(event) {
   if (event.target && event.target.matches('.href-new-entries')) {
     $entryForm.className = '';
     $entries.className = 'hidden';
+    $editH1.className = 'edit-entry hidden';
+    $newH1.className = 'new-entry ';
     data.view = 'entry-form';
   }
 
