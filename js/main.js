@@ -7,7 +7,8 @@ var $img = document.querySelector('img');
 var $editH1 = document.querySelector('.edit-entry');
 var $newH1 = document.querySelector('.new-entry');
 var $p = document.querySelector('.p-entries');
-
+var $liList = null;
+var getEntry = null;
 function photoChange(event) {
   $img.src = event.target.value;
 }
@@ -26,14 +27,13 @@ function submitEntryForm(event) {
 
   newEntryObject.EntryId = data.nextEntryId;
   if (data.editing !== null) {
-    // console.log('hi editing is not null right now');
     for (var i = 0; i < data.entries.length; i++) {
       if (data.editing === data.entries[i].EntryId) {
-        // console.log('hi we found the matching form', data.entries[i]);
         data.entries[i].title = titleValue;
         data.entries[i].photoUrl = photoUrlValue;
         data.entries[i].notes = notesValue;
-        // console.log('what HAVE YOU DONE OH NO', data.entries[i]);
+        var getUpdatedEntry = renderEntries(data.entries[i]);
+        getEntry.replaceWith(getUpdatedEntry);
       }
     }
   } else {
@@ -47,6 +47,7 @@ function submitEntryForm(event) {
   $entryForm.className = 'hidden';
   $p.className = 'hidden';
   data.view = 'entries';
+  data.editing = null;
   $createEntry.reset();
 }
 
@@ -99,7 +100,6 @@ function renderEntries(dataEntries) {
 }
 
 var $ul = document.querySelector('ul');
-
 function renderEntriesLoading(event) {
   for (var i = 0; i < data.entries.length; i++) {
     var renderEntriesAppear = renderEntries(data.entries[i]);
@@ -111,10 +111,8 @@ window.addEventListener('DOMContentLoaded', renderEntriesLoading);
 
 function chooseToEdit(event) {
   if (event.target && event.target.matches('i')) {
-    var getEntry = event.target.closest('[data-entry-id]');
-    var $liList = document.querySelectorAll('[data-entry-id]');
-    // console.log('value of getEntry is: ', getEntry);
-    // console.log('value of $liList is: ', $liList);
+    getEntry = event.target.closest('[data-entry-id]');
+    $liList = document.querySelectorAll('[data-entry-id]');
     for (var i = 0; i < $liList.length; i++) {
       if ($liList[i] === getEntry) {
         var titleEdit = data.entries[i].title;
