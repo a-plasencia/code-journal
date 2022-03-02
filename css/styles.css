@@ -42,8 +42,8 @@ ul {
 }
 
 .href-entries-list {
-  background-color: #562b81;
   color: white;
+  background-color: #562b81;
   padding: 0.5rem, 1rem;
   margin-left: 1rem;
   margin-top: 1rem;
@@ -128,4 +128,14 @@ button {
 .justify-between {
   display: flex;
   justify-content: space-between;
+}
+
+.fa {
+  font-size: 1.5rem;
+  padding-top: 1rem;
+  color: #562b81;
+}
+
+i:hover {
+  cursor: pointer;
 }
