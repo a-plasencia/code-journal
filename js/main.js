@@ -11,23 +11,12 @@ var $hrefEntries = document.querySelector('.href-entries-list');
 var $hrefNewEntries = document.querySelector('.href-new-entries');
 var $hrefDelete = document.querySelector('.delete');
 var $hrefCancel = document.querySelector('.href-cancel');
-// var $hrefConfirm = document.querySelector('.href-confirm');
+var $hrefConfirm = document.querySelector('.href-confirm');
 var $modal = document.querySelector('#modal');
 
 function photoChange(event) {
   $img.src = event.target.value;
 }
-
-function showModal(event) {
-  $modal.className = 'black-bg ';
-}
-$hrefDelete.addEventListener('click', showModal);
-
-function closeModal(event) {
-  $modal.className = 'black-bg hidden';
-}
-
-$hrefCancel.addEventListener('click', closeModal);
 
 function renderEntries(dataEntries) {
   var listedElement = document.createElement('li');
@@ -159,6 +148,42 @@ function viewChange(entryView) {
   }
 }
 
+function showModal(event) {
+  $modal.className = 'black-bg ';
+}
+$hrefDelete.addEventListener('click', showModal);
+
+function closeModal(event) {
+  $modal.className = 'black-bg hidden';
+}
+
+$hrefCancel.addEventListener('click', closeModal);
+
+function deleteEntry(event) {
+  if (data.editing !== null) {
+    var $liList = document.querySelectorAll('[data-entry-id]');
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.editing === data.entries[i].EntryId) {
+        var getAttributeLi = $liList[i].getAttribute('data-entry-id');
+        getAttributeLi = JSON.parse(getAttributeLi);
+        if (data.editing === getAttributeLi) {
+          data.entries.splice(i, 1);
+          $liList[i].remove();
+        }
+      }
+    }
+    data.view = 'entries';
+    data.editing = null;
+    $modal.className = 'black-bg hidden';
+    if (data.entries.length === 0) {
+      $p.className = 'p-entries ';
+    }
+    viewChange('entries');
+  }
+}
+
+$hrefConfirm.addEventListener('click', deleteEntry);
+
 $hrefEntries.addEventListener('click', function () {
   data.view = 'entries';
   viewChange('entries');
@@ -183,6 +208,9 @@ if (data.view === 'entries') {
 }
 if (data.entries.length !== 0) {
   $p.className = 'hidden';
+}
+if (data.entries.length === 0) {
+  $p.className = 'p-entries ';
 }
 
 $createEntry.addEventListener('submit', submitEntryForm);
