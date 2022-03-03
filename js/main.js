@@ -6,8 +6,13 @@ var $photoUrl = document.querySelector('#photo-entry');
 var $img = document.querySelector('img');
 var $newH1 = document.querySelector('.new-entry');
 var $p = document.querySelector('.p-entries');
+var $divDelete = document.querySelector('#delete-div');
 var $hrefEntries = document.querySelector('.href-entries-list');
 var $hrefNewEntries = document.querySelector('.href-new-entries');
+var $hrefDelete = document.querySelector('.delete');
+var $hrefCancel = document.querySelector('.href-cancel');
+var $hrefConfirm = document.querySelector('.href-confirm');
+var $modal = document.querySelector('#modal');
 
 function photoChange(event) {
   $img.src = event.target.value;
@@ -70,6 +75,8 @@ function chooseToEdit(event) {
   if (event.target && event.target.matches('i')) {
     viewChange('entry-form');
     $newH1.textContent = 'Edit Entry';
+    $hrefDelete.className = 'delete ';
+    $divDelete.className = 'column-full justify-between';
     var getEntry = event.target.closest('[data-entry-id]');
     var $liList = document.querySelectorAll('[data-entry-id]');
     for (var i = 0; i < $liList.length; i++) {
@@ -141,6 +148,42 @@ function viewChange(entryView) {
   }
 }
 
+function showModal(event) {
+  $modal.className = 'black-bg ';
+}
+$hrefDelete.addEventListener('click', showModal);
+
+function closeModal(event) {
+  $modal.className = 'black-bg hidden';
+}
+
+$hrefCancel.addEventListener('click', closeModal);
+
+function deleteEntry(event) {
+  if (data.editing !== null) {
+    var $liList = document.querySelectorAll('[data-entry-id]');
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.editing === data.entries[i].EntryId) {
+        var getAttributeLi = $liList[i].getAttribute('data-entry-id');
+        getAttributeLi = JSON.parse(getAttributeLi);
+        if (data.editing === getAttributeLi) {
+          data.entries.splice(i, 1);
+          $liList[i].remove();
+        }
+      }
+    }
+    data.view = 'entries';
+    data.editing = null;
+    $modal.className = 'black-bg hidden';
+    if (data.entries.length === 0) {
+      $p.className = 'p-entries ';
+    }
+    viewChange('entries');
+  }
+}
+
+$hrefConfirm.addEventListener('click', deleteEntry);
+
 $hrefEntries.addEventListener('click', function () {
   data.view = 'entries';
   viewChange('entries');
@@ -149,6 +192,8 @@ $hrefEntries.addEventListener('click', function () {
 $hrefNewEntries.addEventListener('click', function () {
   $createEntry.reset();
   $newH1.textContent = 'New Entry';
+  $divDelete.className = 'column-full ';
+  $hrefDelete.className = 'delete hidden';
   $img.src = 'images/placeholder-image-square.jpg';
   data.view = 'entry-form';
   viewChange('entry-form');
@@ -163,6 +208,9 @@ if (data.view === 'entries') {
 }
 if (data.entries.length !== 0) {
   $p.className = 'hidden';
+}
+if (data.entries.length === 0) {
+  $p.className = 'p-entries ';
 }
 
 $createEntry.addEventListener('submit', submitEntryForm);
