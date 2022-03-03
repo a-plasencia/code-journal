@@ -6,9 +6,10 @@ var $photoUrl = document.querySelector('#photo-entry');
 var $img = document.querySelector('img');
 var $newH1 = document.querySelector('.new-entry');
 var $p = document.querySelector('.p-entries');
+var $divDelete = document.querySelector('#delete-div');
 var $hrefEntries = document.querySelector('.href-entries-list');
 var $hrefNewEntries = document.querySelector('.href-new-entries');
-
+var $hrefDelete = document.querySelector('.delete');
 function photoChange(event) {
   $img.src = event.target.value;
 }
@@ -70,6 +71,8 @@ function chooseToEdit(event) {
   if (event.target && event.target.matches('i')) {
     viewChange('entry-form');
     $newH1.textContent = 'Edit Entry';
+    $hrefDelete.className = 'delete ';
+    $divDelete.className = 'column-full justify-between';
     var getEntry = event.target.closest('[data-entry-id]');
     var $liList = document.querySelectorAll('[data-entry-id]');
     for (var i = 0; i < $liList.length; i++) {
@@ -149,6 +152,8 @@ $hrefEntries.addEventListener('click', function () {
 $hrefNewEntries.addEventListener('click', function () {
   $createEntry.reset();
   $newH1.textContent = 'New Entry';
+  $divDelete.className = 'column-full ';
+  $hrefDelete.className = 'delete hidden';
   $img.src = 'images/placeholder-image-square.jpg';
   data.view = 'entry-form';
   viewChange('entry-form');

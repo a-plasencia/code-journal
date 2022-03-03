@@ -102,6 +102,13 @@ input {
   padding-bottom: 8px;
 }
 
+.delete {
+  margin-top: 2rem;
+  color: red;
+  text-decoration: underline;
+  font-weight: 100;
+}
+
 .button {
   text-align: right;
   padding: 0.5rem 1rem;
