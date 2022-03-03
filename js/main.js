@@ -10,10 +10,16 @@ var $divDelete = document.querySelector('#delete-div');
 var $hrefEntries = document.querySelector('.href-entries-list');
 var $hrefNewEntries = document.querySelector('.href-new-entries');
 var $hrefDelete = document.querySelector('.delete');
+var $modal = document.querySelector('#modal');
+
 function photoChange(event) {
   $img.src = event.target.value;
 }
 
+function showModal(event) {
+  $modal.className = 'black-bg ';
+}
+$hrefDelete.addEventListener('click', showModal);
 function renderEntries(dataEntries) {
   var listedElement = document.createElement('li');
   listedElement.setAttribute('data-entry-id', dataEntries.EntryId);
