@@ -10,6 +10,8 @@ var $divDelete = document.querySelector('#delete-div');
 var $hrefEntries = document.querySelector('.href-entries-list');
 var $hrefNewEntries = document.querySelector('.href-new-entries');
 var $hrefDelete = document.querySelector('.delete');
+var $hrefCancel = document.querySelector('.href-cancel');
+// var $hrefConfirm = document.querySelector('.href-confirm');
 var $modal = document.querySelector('#modal');
 
 function photoChange(event) {
@@ -20,6 +22,13 @@ function showModal(event) {
   $modal.className = 'black-bg ';
 }
 $hrefDelete.addEventListener('click', showModal);
+
+function closeModal(event) {
+  $modal.className = 'black-bg hidden';
+}
+
+$hrefCancel.addEventListener('click', closeModal);
+
 function renderEntries(dataEntries) {
   var listedElement = document.createElement('li');
   listedElement.setAttribute('data-entry-id', dataEntries.EntryId);
